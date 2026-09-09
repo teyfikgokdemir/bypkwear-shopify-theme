@@ -21,7 +21,7 @@
         widths: '240, 352, 832, 1200, 1600, 1920, 2560, 3840',
         height: image.height,
         class: 'logo-section__image',
-        alt: shop.name,
+        alt: 'PKWEAR',
         sizes: '(min-width: 750px) calc(var(--logo-width)), 100vw'
     -}}
   {% endcapture %}
@@ -46,7 +46,7 @@
         {% if image %}
           --logo-width: {{ image.width | times: 1.00 | divided_by: image.height | times: section_settings.pixel_height }}px;
         {% else %}
-          --logo-width: {{ shop.name.size | times: 0.65 }}em;
+          --logo-width: 3.9em;
           --logo-height: {{ section_settings.pixel_height }}px;
         {% endif %}
       {% endif %}
@@ -59,7 +59,7 @@
           {% if image %}
             --logo-width-mobile: {{ image.width | times: 1.00 | divided_by: image.height | times: section_settings.pixel_height_mobile }}px;
             {% else %}
-              --logo-width-mobile: {{ shop.name.size | times: 0.65 }}em;
+              --logo-width-mobile: 3.9em;
               --logo-height-mobile: {{ section_settings.pixel_height_mobile }}px;
           {% endif %}
         {% endif %}
@@ -73,7 +73,7 @@
         {{ logo_image }}
       </div>
     {% else %}
-      {% render 'jumbo-text', text: shop.name, block_settings: section.settings %}
+      {% render 'jumbo-text', text: 'PKWEAR', block_settings: section.settings %}
     {% endif %}
   </div>
 </div>
