@@ -3,7 +3,7 @@
     "bypk_hero": {
       "type": "bypk-editorial-hero",
       "settings": {
-        "kicker": "BYPKWEAR · YENİ SEZON",
+        "kicker": "PKWEAR · YENİ SEZON",
         "heading": "Şehrin ritmine göre tasarlandı.",
         "primary_label": "Yeni Gelenleri Keşfet",
         "primary_link": "shopify://collections/etek",
@@ -37,7 +37,7 @@
     "campaign_film": {
       "type": "bypk-campaign-film",
       "settings": {
-        "kicker": "BYPKWEAR · ŞEHİR STİLİ",
+        "kicker": "PKWEAR · ŞEHİR STİLİ",
         "heading": "Hareket özgürlükle buluştu.",
         "text": "Günün her anına uyum sağlayan etekler ve eşofman takımlarıyla kendi ritmini yakala.",
         "link_label": "Eşofmanları Keşfet",
@@ -49,7 +49,7 @@
       "settings": {
         "kicker": "BİZİM YAKLAŞIMIMIZ",
         "heading": "Giyinmek değil, kendini ifade etmek.",
-        "text": "<p>BYPKWEAR, şehir hayatının temposuna ayak uyduran kadınlar için seçilmiş parçaları bir araya getirir. Konforu, güçlü silüetleri ve kolay kombinlenen tasarımları odağına alır.</p>",
+        "text": "<p>PKWEAR, şehir hayatının temposuna ayak uyduran kadınlar için seçilmiş parçaları bir araya getirir. Konforu, güçlü silüetleri ve kolay kombinlenen tasarımları odağına alır.</p>",
         "link_label": "Tüm ürünleri incele",
         "link": "shopify://collections/all"
       }
