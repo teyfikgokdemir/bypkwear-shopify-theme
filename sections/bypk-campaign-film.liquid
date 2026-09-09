@@ -3,7 +3,14 @@
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'bypk-campaign__image', loading: 'lazy', sizes: '100vw', widths: '750, 1100, 1500, 2000, 2400' }}
     {% else %}
-      {{ 'pkwear-studio-campaign-v1.png' | asset_url | image_tag: class: 'bypk-campaign__image', loading: 'lazy', alt: 'PKWEAR etek ve eşofman koleksiyonu' }}
+      <img
+        class="bypk-campaign__image"
+        src="{{ 'pkwear-studio-campaign-v1.png' | asset_url }}"
+        alt="PKWEAR etek ve eşofman koleksiyonu"
+        width="1792"
+        height="1024"
+        loading="lazy"
+      >
     {% endif %}
   </div>
   <div class="bypk-campaign__shade"></div>
