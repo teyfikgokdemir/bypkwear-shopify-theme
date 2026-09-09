@@ -1,5 +1,5 @@
 <section class="bypk-film">
-  <video class="bypk-film__video" autoplay muted loop playsinline preload="metadata" poster="{{ 'bypkwear-hero-v1.png' | asset_url }}" aria-label="PKWEAR etek ve eşofman koleksiyonu filmi">
+  <video class="bypk-film__video" autoplay muted loop playsinline preload="auto" poster="{{ 'bypkwear-hero-v1.png' | asset_url }}" aria-label="PKWEAR etek ve eşofman koleksiyonu filmi">
     <source src="{{ 'bypkwear-campaign-film-v1.mp4' | asset_url }}" type="video/mp4">
   </video>
   <div class="bypk-film__shade"></div>
@@ -49,9 +49,16 @@
       control.setAttribute('aria-label', paused ? 'Videoyu oynat' : 'Videoyu duraklat');
     };
 
-    const tryPlay = () => video.play().then(syncControl).catch(syncControl);
+    const tryPlay = () => {
+      video.muted = true;
+      video.playsInline = true;
+      return video.play().then(syncControl).catch(syncControl);
+    };
     control.addEventListener('click', () => {
-      if (video.paused) tryPlay();
+      if (video.paused) {
+        if (video.ended || video.currentTime >= video.duration - 0.1) video.currentTime = 0;
+        tryPlay();
+      }
       else {
         video.pause();
         syncControl();
@@ -60,6 +67,9 @@
 
     video.addEventListener('play', syncControl);
     video.addEventListener('pause', syncControl);
+    video.addEventListener('canplay', () => {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && video.paused) tryPlay();
+    }, { once: true });
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) tryPlay();
     else syncControl();
   };
