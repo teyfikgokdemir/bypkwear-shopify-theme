@@ -30,7 +30,14 @@
     const progress = distance > 0 ? Math.min((window.scrollY / distance) * 100, 100) : 0;
     document.documentElement.style.setProperty('--pkw-scroll', `${progress}%`);
     document.body.classList.toggle('pkw-scrolled', window.scrollY > 24);
+    const scrollTopButton = document.querySelector('.pkw-floating-action--top');
+    if (scrollTopButton) scrollTopButton.hidden = window.scrollY < 500;
   };
+
+  const scrollTopButton = document.querySelector('.pkw-floating-action--top');
+  scrollTopButton?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+  });
 
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
