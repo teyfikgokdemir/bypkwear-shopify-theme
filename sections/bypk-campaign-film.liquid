@@ -1,0 +1,43 @@
+<section class="bypk-film">
+  <video class="bypk-film__video" autoplay muted loop playsinline preload="metadata" poster="{{ 'bypkwear-hero-v1.png' | asset_url }}">
+    <source src="{{ 'bypkwear-campaign-film-v1.mp4' | asset_url }}" type="video/mp4">
+  </video>
+  <div class="bypk-film__shade"></div>
+  <div class="bypk-film__content">
+    <p class="bypk-kicker">{{ section.settings.kicker }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.text }}</p>
+    <a class="bypk-button" href="{{ section.settings.link }}">{{ section.settings.link_label }}</a>
+  </div>
+</section>
+
+{% stylesheet %}
+  .bypk-film { position: relative; min-height: clamp(520px, 72vw, 820px); overflow: hidden; color: #fff; background: #171513; }
+  .bypk-film__video, .bypk-film__shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .bypk-film__video { object-fit: cover; }
+  .bypk-film__shade { background: linear-gradient(90deg, rgba(0,0,0,.56), rgba(0,0,0,.08)); }
+  .bypk-film__content { position: relative; z-index: 1; display: flex; min-height: inherit; max-width: 680px; flex-direction: column; justify-content: center; align-items: flex-start; padding: clamp(2rem, 7vw, 7rem); }
+  .bypk-film__content h2 { max-width: 10ch; margin: 0; font-size: clamp(3rem, 7vw, 7rem); font-weight: 450; letter-spacing: -.055em; line-height: .92; }
+  .bypk-film__content > p:not(.bypk-kicker) { max-width: 48ch; margin: 1.5rem 0 2rem; font-size: clamp(.95rem, 1.3vw, 1.12rem); line-height: 1.65; }
+  .bypk-film .bypk-button { color: #fff; }
+  .bypk-film .bypk-button:hover { color: #111; background: #fff; }
+  @media (max-width: 749px) {
+    .bypk-film { min-height: 72svh; }
+    .bypk-film__video { object-position: 58% center; }
+    .bypk-film__content { justify-content: flex-end; padding: 2rem 1.25rem 3.5rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BYPK Koleksiyon Filmi",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Üst başlık", "default": "BYPKWEAR · ŞEHİR STİLİ" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Hareket özgürlükle buluştu." },
+    { "type": "textarea", "id": "text", "label": "Metin", "default": "Günün her anına uyum sağlayan etekler ve eşofman takımlarıyla kendi ritmini yakala." },
+    { "type": "text", "id": "link_label", "label": "Buton", "default": "Koleksiyonu Keşfet" },
+    { "type": "url", "id": "link", "label": "Bağlantı" }
+  ],
+  "presets": [{ "name": "BYPK Koleksiyon Filmi" }]
+}
+{% endschema %}

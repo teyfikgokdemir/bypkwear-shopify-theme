@@ -1,0 +1,31 @@
+<section class="bypk-story">
+  <div class="bypk-story__eyebrow">{{ section.settings.kicker }}</div>
+  <div class="bypk-story__body">
+    <h2>{{ section.settings.heading }}</h2>
+    <div class="bypk-story__copy">{{ section.settings.text }}</div>
+    <a href="{{ section.settings.link }}">{{ section.settings.link_label }} <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+{% stylesheet %}
+  .bypk-story { display: grid; grid-template-columns: minmax(160px, .55fr) 1.45fr; gap: clamp(2rem, 7vw, 8rem); padding: clamp(5rem, 10vw, 10rem) clamp(1.25rem, 4vw, 4rem); background: #f4f0e8; }
+  .bypk-story__eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+  .bypk-story__body h2 { max-width: 13ch; margin: 0; font-size: clamp(2.4rem, 5vw, 5.4rem); font-weight: 450; letter-spacing: -.045em; line-height: .98; }
+  .bypk-story__copy { max-width: 62ch; margin: 2rem 0; font-size: clamp(1rem, 1.4vw, 1.18rem); line-height: 1.75; }
+  .bypk-story__body a { color: inherit; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-decoration-thickness: 1px; text-underline-offset: 7px; text-transform: uppercase; }
+  @media (max-width: 749px) { .bypk-story { grid-template-columns: 1fr; gap: 2rem; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BYPK Marka Hikâyesi",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Üst başlık", "default": "BİZİM YAKLAŞIMIMIZ" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Giyinmek değil, kendini ifade etmek." },
+    { "type": "richtext", "id": "text", "label": "Metin", "default": "<p>BYPKWEAR, şehir hayatının temposuna ayak uyduran kadınlar için seçilmiş parçaları bir araya getirir. Konforu, güçlü silüetleri ve kolay kombinlenen tasarımları odağına alır.</p>" },
+    { "type": "text", "id": "link_label", "label": "Bağlantı metni", "default": "Tüm ürünleri incele" },
+    { "type": "url", "id": "link", "label": "Bağlantı" }
+  ],
+  "presets": [{ "name": "BYPK Marka Hikâyesi" }]
+}
+{% endschema %}

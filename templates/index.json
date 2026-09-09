@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "bypk_hero": {
+      "type": "bypk-editorial-hero",
+      "settings": {
+        "kicker": "BYPKWEAR · YENİ SEZON",
+        "heading": "Şehrin ritmine göre tasarlandı.",
+        "primary_label": "Yeni Gelenleri Keşfet",
+        "primary_link": "shopify://collections/etek",
+        "secondary_label": "Tüm Koleksiyon",
+        "secondary_link": "shopify://collections/esofmanlar",
+        "overlay_opacity": 25
+      }
+    },
+    "trust": {
+      "type": "bypk-trust-strip",
+      "settings": {}
+    },
+    "skirts": {
+      "type": "bypk-collection-showcase",
+      "settings": {
+        "kicker": "SEÇİLİ PARÇALAR",
+        "heading": "Etek Koleksiyonu",
+        "collection": "etek",
+        "products_to_show": 8
+      }
+    },
+    "tracksuits": {
+      "type": "bypk-collection-showcase",
+      "settings": {
+        "kicker": "GÜNLÜK KONFOR",
+        "heading": "Eşofman Koleksiyonu",
+        "collection": "esofmanlar",
+        "products_to_show": 8
+      }
+    },
+    "campaign_film": {
+      "type": "bypk-campaign-film",
+      "settings": {
+        "kicker": "BYPKWEAR · ŞEHİR STİLİ",
+        "heading": "Hareket özgürlükle buluştu.",
+        "text": "Günün her anına uyum sağlayan etekler ve eşofman takımlarıyla kendi ritmini yakala.",
+        "link_label": "Eşofmanları Keşfet",
+        "link": "shopify://collections/esofmanlar"
+      }
+    },
+    "brand_story": {
+      "type": "bypk-brand-story",
+      "settings": {
+        "kicker": "BİZİM YAKLAŞIMIMIZ",
+        "heading": "Giyinmek değil, kendini ifade etmek.",
+        "text": "<p>BYPKWEAR, şehir hayatının temposuna ayak uyduran kadınlar için seçilmiş parçaları bir araya getirir. Konforu, güçlü silüetleri ve kolay kombinlenen tasarımları odağına alır.</p>",
+        "link_label": "Tüm ürünleri incele",
+        "link": "shopify://collections/all"
+      }
+    }
+  },
+  "order": ["bypk_hero", "trust", "skirts", "campaign_film", "tracksuits", "brand_story"]
+}

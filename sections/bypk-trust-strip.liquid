@@ -1,0 +1,22 @@
+<section class="bypk-trust" aria-label="Alışveriş avantajları">
+  <div><strong>GÜVENLİ ÖDEME</strong><span>Korunan ödeme altyapısı</span></div>
+  <div><strong>HIZLI KARGO</strong><span>Siparişiniz özenle hazırlanır</span></div>
+  <div><strong>KOLAY İADE</strong><span>Şeffaf ve kolay süreç</span></div>
+</section>
+
+{% stylesheet %}
+  .bypk-trust { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid rgba(17,16,14,.14); }
+  .bypk-trust > div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.4rem clamp(1rem,3vw,3rem); border-inline-end: 1px solid rgba(17,16,14,.14); }
+  .bypk-trust > div:last-child { border: 0; }
+  .bypk-trust strong { font-size: .7rem; letter-spacing: .14em; }
+  .bypk-trust span { color: rgba(17,16,14,.62); font-size: .72rem; text-align: right; }
+  @media (max-width: 749px) {
+    .bypk-trust { grid-template-columns: 1fr; }
+    .bypk-trust > div { border-inline-end: 0; border-block-end: 1px solid rgba(17,16,14,.14); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{ "name": "BYPK Güven Şeridi", "settings": [], "presets": [{ "name": "BYPK Güven Şeridi" }] }
+{% endschema %}
+

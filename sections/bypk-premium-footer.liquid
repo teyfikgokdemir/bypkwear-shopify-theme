@@ -1,0 +1,63 @@
+<footer class="bypk-footer">
+  <div class="bypk-footer__intro">
+    <p class="bypk-kicker">BYPKWEAR</p>
+    <h2>Şehrin ritmine göre tasarlandı.</h2>
+    <p>Yeni koleksiyonları, stil önerilerini ve seçili fırsatları ilk siz keşfedin.</p>
+    {% form 'customer', class: 'bypk-footer__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="visually-hidden" for="BYPKFooterEmail">E-posta adresi</label>
+      <input id="BYPKFooterEmail" type="email" name="contact[email]" placeholder="E-posta adresiniz" required autocomplete="email">
+      <button type="submit">Kaydol</button>
+      {% if form.posted_successfully? %}<p class="bypk-footer__message">Teşekkürler, aramıza katıldınız.</p>{% endif %}
+      {{ form.errors | default_errors }}
+    {% endform %}
+  </div>
+  <div class="bypk-footer__nav">
+    <div>
+      <h3>Koleksiyonlar</h3>
+      <a href="{{ collections.etek.url }}">Etek</a>
+      <a href="{{ collections.esofmanlar.url }}">Eşofmanlar</a>
+      <a href="{{ routes.all_products_collection_url }}">Tüm Ürünler</a>
+    </div>
+    <div>
+      <h3>Yardım</h3>
+      <a href="/pages/contact">İletişim</a>
+      {% if shop.refund_policy.url != blank %}<a href="{{ shop.refund_policy.url }}">İade Politikası</a>{% endif %}
+      {% if shop.shipping_policy.url != blank %}<a href="{{ shop.shipping_policy.url }}">Kargo Politikası</a>{% endif %}
+      {% if shop.privacy_policy.url != blank %}<a href="{{ shop.privacy_policy.url }}">Gizlilik Politikası</a>{% endif %}
+      {% if shop.terms_of_service.url != blank %}<a href="{{ shop.terms_of_service.url }}">Kullanım Şartları</a>{% endif %}
+    </div>
+  </div>
+  <div class="bypk-footer__bottom">
+    <span>© {{ 'now' | date: '%Y' }} BYPKWEAR. Tüm hakları saklıdır.</span>
+    <span>Güvenli ödeme · Özenli paketleme</span>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .bypk-footer { padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 4vw, 4rem) 1.5rem; color: #f8f6f1; background: #141412; }
+  .bypk-footer__intro { max-width: 720px; }
+  .bypk-footer__intro h2 { max-width: 12ch; margin: 0; font-size: clamp(2.5rem, 5vw, 5.4rem); font-weight: 450; letter-spacing: -.05em; line-height: .95; }
+  .bypk-footer__intro > p:not(.bypk-kicker) { margin: 1.5rem 0; color: rgba(255,255,255,.68); }
+  .bypk-footer__form { display: grid; grid-template-columns: 1fr auto; max-width: 620px; margin-top: 2rem; border-bottom: 1px solid rgba(255,255,255,.45); }
+  .bypk-footer__form input { min-height: 56px; border: 0; color: #fff; background: transparent; box-shadow: none; }
+  .bypk-footer__form button { border: 0; color: #fff; background: transparent; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .bypk-footer__message, .bypk-footer__form .errors { grid-column: 1 / -1; }
+  .bypk-footer__nav { display: grid; grid-template-columns: repeat(2, minmax(150px, 240px)); gap: 3rem; justify-content: end; margin: clamp(4rem, 8vw, 8rem) 0; }
+  .bypk-footer__nav h3 { margin: 0 0 1.2rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
+  .bypk-footer__nav a { display: block; margin: .72rem 0; color: rgba(255,255,255,.7); text-decoration: none; }
+  .bypk-footer__nav a:hover { color: #fff; }
+  .bypk-footer__bottom { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.52); font-size: .68rem; letter-spacing: .04em; }
+  @media (max-width: 749px) {
+    .bypk-footer__nav { justify-content: start; grid-template-columns: 1fr 1fr; }
+    .bypk-footer__bottom { flex-direction: column; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BYPK Premium Footer",
+  "settings": [],
+  "presets": [{ "name": "BYPK Premium Footer" }]
+}
+{% endschema %}

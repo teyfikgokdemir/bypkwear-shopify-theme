@@ -1,0 +1,71 @@
+{{ 'bypk-premium.css' | asset_url | stylesheet_tag }}
+
+{% assign featured_collection = section.settings.collection %}
+<section class="bypk-showcase">
+  <header class="bypk-showcase__header">
+    <div>
+      <p class="bypk-kicker">{{ section.settings.kicker }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    {% if featured_collection != blank %}<a href="{{ featured_collection.url }}">Tümünü gör <span aria-hidden="true">→</span></a>{% endif %}
+  </header>
+
+  <div class="bypk-showcase__rail">
+    {% if featured_collection != blank %}
+      {% for product in featured_collection.products limit: section.settings.products_to_show %}
+        <article class="bypk-card">
+          <a class="bypk-card__media" href="{{ product.url }}">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '360, 540, 720, 1000', sizes: '(max-width: 749px) 78vw, 25vw', class: 'bypk-card__image bypk-card__image--primary' }}
+              {% if product.images[1] %}{{ product.images[1] | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '360, 540, 720, 1000', sizes: '(max-width: 749px) 78vw, 25vw', class: 'bypk-card__image bypk-card__image--hover' }}{% endif %}
+            {% endif %}
+            {% if product.compare_at_price_max > product.price %}<span class="bypk-card__badge">İNDİRİM</span>{% endif %}
+          </a>
+          <div class="bypk-card__meta">
+            <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+            <p>{{ product.price | money }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    {% else %}
+      {% for i in (1..4) %}<div class="bypk-card">{{ 'product-apparel-' | append: i | placeholder_svg_tag: 'bypk-card__placeholder' }}</div>{% endfor %}
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .bypk-showcase { padding: clamp(4.5rem, 9vw, 9rem) clamp(1rem, 3vw, 3rem); overflow: hidden; }
+  .bypk-showcase__header { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .bypk-showcase__header h2 { margin: 0; font-size: clamp(2.2rem, 4.5vw, 5.2rem); font-weight: 450; letter-spacing: -.045em; line-height: .95; }
+  .bypk-showcase__header > a { color: inherit; font-size: .75rem; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; text-underline-offset: 5px; white-space: nowrap; }
+  .bypk-showcase__rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.65rem, 1.5vw, 1.5rem); }
+  .bypk-card__media { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; background: #efede8; }
+  .bypk-card__image, .bypk-card__placeholder { width: 100%; height: 100%; object-fit: cover; transition: opacity .45s ease, transform .7s cubic-bezier(.22,1,.36,1); }
+  .bypk-card__image--hover { position: absolute; inset: 0; opacity: 0; }
+  .bypk-card:hover .bypk-card__image--primary { opacity: 0; }
+  .bypk-card:hover .bypk-card__image--hover { opacity: 1; transform: scale(1.025); }
+  .bypk-card__badge { position: absolute; top: .75rem; left: .75rem; padding: .4rem .55rem; color: #fff; background: #111; font-size: .6rem; letter-spacing: .12em; }
+  .bypk-card__meta { display: flex; justify-content: space-between; gap: 1rem; padding-top: .8rem; }
+  .bypk-card__meta h3, .bypk-card__meta p { margin: 0; font-size: .84rem; font-weight: 450; }
+  .bypk-card__meta h3 a { color: inherit; text-decoration: none; }
+  @media (max-width: 749px) {
+    .bypk-showcase__header { align-items: flex-start; flex-direction: column; gap: 1rem; }
+    .bypk-showcase__rail { grid-template-columns: repeat(4, 78vw); gap: .8rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .bypk-card { scroll-snap-align: start; }
+    .bypk-showcase__rail::-webkit-scrollbar { display: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BYPK Koleksiyon Vitrini",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Üst başlık", "default": "SEÇİLİ PARÇALAR" },
+    { "type": "text", "id": "heading", "label": "Başlık", "default": "Yeni Gelenler" },
+    { "type": "collection", "id": "collection", "label": "Koleksiyon" },
+    { "type": "range", "id": "products_to_show", "label": "Ürün sayısı", "min": 4, "max": 12, "step": 1, "default": 8 }
+  ],
+  "presets": [{ "name": "BYPK Koleksiyon Vitrini" }]
+}
+{% endschema %}
+

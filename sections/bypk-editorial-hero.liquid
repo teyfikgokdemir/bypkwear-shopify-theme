@@ -1,0 +1,59 @@
+{{ 'bypk-premium.css' | asset_url | stylesheet_tag }}
+
+<section class="bypk-hero" style="--bypk-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
+  <div class="bypk-hero__media">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', class: 'bypk-hero__image' }}
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'bypk-hero__placeholder' }}
+    {% endif %}
+  </div>
+  <div class="bypk-hero__shade"></div>
+  <div class="bypk-hero__content">
+    {% if section.settings.kicker != blank %}<p class="bypk-kicker bypk-reveal">{{ section.settings.kicker }}</p>{% endif %}
+    <h1 class="bypk-title bypk-reveal">{{ section.settings.heading }}</h1>
+    <div class="bypk-hero__actions bypk-reveal">
+      {% if section.settings.primary_label != blank %}<a class="bypk-button bypk-button--light" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>{% endif %}
+      {% if section.settings.secondary_label != blank %}<a class="bypk-hero__text-link" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }} <span aria-hidden="true">↗</span></a>{% endif %}
+    </div>
+  </div>
+  <p class="bypk-hero__scroll" aria-hidden="true">KEŞFET <span></span></p>
+</section>
+
+{% stylesheet %}
+  .bypk-hero { position: relative; min-height: min(88svh, 940px); overflow: hidden; color: #fff; background: #171513; }
+  .bypk-hero__media, .bypk-hero__shade { position: absolute; inset: 0; }
+  .bypk-hero__image, .bypk-hero__placeholder { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
+  .bypk-hero:hover .bypk-hero__image { transform: scale(1.018); }
+  .bypk-hero__shade { background: linear-gradient(90deg, rgba(0,0,0,calc(var(--bypk-overlay) + .12)) 0%, rgba(0,0,0,var(--bypk-overlay)) 45%, rgba(0,0,0,.04) 100%); }
+  .bypk-hero__content { position: relative; z-index: 1; display: flex; min-height: inherit; flex-direction: column; justify-content: flex-end; padding: clamp(2rem, 5vw, 5.5rem); padding-bottom: clamp(4rem, 8vw, 8rem); }
+  .bypk-hero__actions { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.2rem; }
+  .bypk-button--light:hover { color: #111; background: #fff; }
+  .bypk-hero__text-link { color: inherit; font-size: .78rem; font-weight: 650; letter-spacing: .1em; text-underline-offset: 5px; }
+  .bypk-hero__scroll { position: absolute; right: clamp(1.5rem, 3vw, 3rem); bottom: 2rem; z-index: 1; display: flex; align-items: center; gap: .7rem; margin: 0; font-size: .62rem; letter-spacing: .18em; writing-mode: vertical-rl; }
+  .bypk-hero__scroll span { width: 1px; height: 42px; background: currentColor; opacity: .65; }
+  @media (max-width: 749px) {
+    .bypk-hero { min-height: 78svh; }
+    .bypk-hero__content { padding: 1.5rem 1.25rem 4.5rem; }
+    .bypk-hero__actions { align-items: flex-start; flex-direction: column; gap: 1rem; }
+    .bypk-hero__scroll { display: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BYPK Editoryal Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Ana görsel" },
+    { "type": "text", "id": "kicker", "label": "Üst başlık", "default": "BYPKWEAR · YENİ SEZON" },
+    { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Şehrin ritmine göre tasarlandı." },
+    { "type": "text", "id": "primary_label", "label": "Ana buton", "default": "Yeni Gelenleri Keşfet" },
+    { "type": "url", "id": "primary_link", "label": "Ana buton bağlantısı" },
+    { "type": "text", "id": "secondary_label", "label": "İkinci bağlantı", "default": "Tüm Koleksiyon" },
+    { "type": "url", "id": "secondary_link", "label": "İkinci bağlantı" },
+    { "type": "range", "id": "overlay_opacity", "label": "Görsel karartma", "min": 0, "max": 70, "step": 5, "unit": "%", "default": 25 }
+  ],
+  "presets": [{ "name": "BYPK Editoryal Hero" }]
+}
+{% endschema %}
+
