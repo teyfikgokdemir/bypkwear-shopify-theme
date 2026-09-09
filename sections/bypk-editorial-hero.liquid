@@ -3,7 +3,12 @@
 <section class="bypk-hero" style="--bypk-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
   <div class="bypk-hero__media">
     {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', class: 'bypk-hero__image' }}
+      <picture>
+        {% if section.settings.mobile_image != blank %}
+          <source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 900 }}">
+        {% endif %}
+        {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', class: 'bypk-hero__image' }}
+      </picture>
     {% else %}
       <img src="{{ 'bypkwear-hero-v1.png' | asset_url }}" width="1672" height="941" loading="eager" fetchpriority="high" class="bypk-hero__image" alt="PKWEAR kadın etek ve eşofman koleksiyonu">
     {% endif %}
@@ -22,7 +27,7 @@
 
 {% stylesheet %}
   .bypk-hero { position: relative; min-height: min(88svh, 940px); overflow: hidden; color: #fff; background: #171513; }
-  .bypk-hero__media, .bypk-hero__shade { position: absolute; inset: 0; }
+  .bypk-hero__media, .bypk-hero__media picture, .bypk-hero__shade { position: absolute; inset: 0; }
   .bypk-hero__image, .bypk-hero__placeholder { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
   .bypk-hero:hover .bypk-hero__image { transform: scale(1.018); }
   .bypk-hero__shade { background: linear-gradient(90deg, rgba(0,0,0,calc(var(--bypk-overlay) + .12)) 0%, rgba(0,0,0,var(--bypk-overlay)) 45%, rgba(0,0,0,.04) 100%); }
@@ -33,9 +38,14 @@
   .bypk-hero__scroll { position: absolute; right: clamp(1.5rem, 3vw, 3rem); bottom: 2rem; z-index: 1; display: flex; align-items: center; gap: .7rem; margin: 0; font-size: .62rem; letter-spacing: .18em; writing-mode: vertical-rl; }
   .bypk-hero__scroll span { width: 1px; height: 42px; background: currentColor; opacity: .65; }
   @media (max-width: 749px) {
-    .bypk-hero { min-height: 78svh; }
-    .bypk-hero__content { padding: 1.5rem 1.25rem 4.5rem; }
-    .bypk-hero__actions { align-items: flex-start; flex-direction: column; gap: 1rem; }
+    .bypk-hero { min-height: 72svh; }
+    .bypk-hero__image { object-position: 56% center; }
+    .bypk-hero__shade { background: linear-gradient(0deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.25) 58%, rgba(0,0,0,.08) 100%); }
+    .bypk-hero__content { justify-content: flex-end; padding: 2rem 1.15rem 2.6rem; }
+    .bypk-title { max-width: 10ch; font-size: clamp(2.6rem, 12vw, 4rem); line-height: .94; }
+    .bypk-hero__actions { align-items: stretch; flex-direction: column; width: 100%; gap: .9rem; margin-top: 1.6rem; }
+    .bypk-hero__actions .bypk-button { width: 100%; }
+    .bypk-hero__text-link { align-self: flex-start; padding-block: .45rem; }
     .bypk-hero__scroll { display: none; }
   }
 {% endstylesheet %}
@@ -45,6 +55,7 @@
   "name": "PKWEAR Editoryal Hero",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Ana görsel" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobil görsel" },
     { "type": "text", "id": "kicker", "label": "Üst başlık", "default": "PKWEAR · YENİ SEZON" },
     { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Şehrin ritmine göre tasarlandı." },
     { "type": "text", "id": "primary_label", "label": "Ana buton", "default": "Yeni Gelenleri Keşfet" },
@@ -56,4 +67,3 @@
   "presets": [{ "name": "PKWEAR Editoryal Hero" }]
 }
 {% endschema %}
-
