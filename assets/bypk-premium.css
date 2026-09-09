@@ -52,6 +52,8 @@ body {
 .pkw-floating-action svg { width: 24px; height: 24px; fill: currentColor; }
 .pkw-floating-action:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(17,16,14,.28); }
 .pkw-floating-action--whatsapp { background: #25d366; }
+.pkw-floating-action--top { opacity: 0; transform: translateY(10px) scale(.92); pointer-events: none; }
+.pkw-floating-action--top.is-visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .pkw-floating-action--top[hidden] { display: none; }
 
 @media (max-width: 749px) {
