@@ -19,7 +19,11 @@
 >
 
 {%- liquid
-  assign og_title = page_title | default: 'PKWEAR'
+  assign document_title = page_title | default: 'PKWEAR'
+  if request.page_type == 'index'
+    assign document_title = 'PKWEAR'
+  endif
+  assign og_title = document_title
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: 'PKWEAR'
@@ -104,10 +108,10 @@
 >
 
 <title>
-  {{ page_title }}
+  {{ document_title }}
   {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
   {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains 'PKWEAR' %} &ndash; PKWEAR{% endunless -%}
+  {%- unless document_title contains 'PKWEAR' %} &ndash; PKWEAR{% endunless -%}
 </title>
 
 <link
