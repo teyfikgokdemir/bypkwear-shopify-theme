@@ -24,6 +24,7 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-palette' -%}
     {{ 'bypk-premium.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'pkwear-premium.js' | asset_url }}" defer></script>
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
@@ -33,6 +34,7 @@
   </head>
 
   <body class="template-{{ template.name | handle }} page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+    <div class="pkw-scroll-progress" aria-hidden="true"></div>
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
 
     {% render 'chat-drawer' %}
