@@ -23,6 +23,11 @@
   if request.page_type == 'index'
     assign document_title = 'PKWEAR'
   endif
+  assign title_last_character = document_title | slice: -1
+  if title_last_character == '|'
+    assign title_length = document_title | size | minus: 1
+    assign document_title = document_title | slice: 0, title_length | strip
+  endif
   assign og_title = document_title
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
