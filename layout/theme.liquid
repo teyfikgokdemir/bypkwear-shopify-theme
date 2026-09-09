@@ -172,6 +172,21 @@
 
     {% render 'search-modal' %}
 
+    <div class="pkw-floating-actions" aria-label="Hızlı erişim">
+      <a
+        class="pkw-floating-action pkw-floating-action--whatsapp"
+        href="https://wa.me/905550000000?text=Merhaba%20PKWEAR%2C%20bir%20%C3%BCr%C3%BCn%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp üzerinden iletişime geç"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.84 9.84 0 0 0-8.52 14.76L2 22l5.38-1.41A9.95 9.95 0 1 0 12.04 2Zm0 17.99a8.08 8.08 0 0 1-4.12-1.13l-.3-.18-3.19.84.85-3.11-.2-.32a8.16 8.16 0 1 1 6.96 3.9Zm4.48-6.11c-.25-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.25-.63.8-.77.96-.14.17-.29.19-.53.07-.25-.12-1.04-.38-1.98-1.22a7.36 7.36 0 0 1-1.37-1.7c-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.75-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.36.99 2.52c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.45-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.17-.47-.29Z"/></svg>
+      </a>
+      <button class="pkw-floating-action pkw-floating-action--top" type="button" aria-label="Sayfanın başına dön" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 14 7-7 7 7-1.4 1.4-5.6-5.6-5.6 5.6L5 14Z"/></svg>
+      </button>
+    </div>
+
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
