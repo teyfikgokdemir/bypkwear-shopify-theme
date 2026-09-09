@@ -19,10 +19,19 @@
 >
 
 {%- liquid
-  assign og_title = page_title | default: shop.name
+  assign document_title = page_title | default: 'PKWEAR'
+  if request.page_type == 'index'
+    assign document_title = 'PKWEAR'
+  endif
+  assign title_last_character = document_title | slice: -1
+  if title_last_character == '|'
+    assign title_length = document_title | size | minus: 1
+    assign document_title = document_title | slice: 0, title_length | strip
+  endif
+  assign og_title = document_title
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = page_description | default: shop.description | default: 'PKWEAR'
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -35,7 +44,7 @@
 
 <meta
   property="og:site_name"
-  content="{{ shop.name }}"
+  content="PKWEAR"
 >
 <meta
   property="og:url"
@@ -104,10 +113,10 @@
 >
 
 <title>
-  {{ page_title }}
+  {{ document_title }}
   {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
   {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  {%- unless document_title contains 'PKWEAR' %} &ndash; PKWEAR{% endunless -%}
 </title>
 
 <link
