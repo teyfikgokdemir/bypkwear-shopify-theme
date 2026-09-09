@@ -60,7 +60,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>BYPKWEAR dünyasına katılın</h2>",
+                "text": "<h2>PKWEAR dünyasına katılın</h2>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
