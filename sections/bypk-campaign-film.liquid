@@ -1,6 +1,6 @@
 <section class="bypk-film">
-  <video class="bypk-film__video" autoplay muted loop playsinline preload="auto" poster="{{ 'bypkwear-hero-v1.png' | asset_url }}" aria-label="PKWEAR etek ve eşofman koleksiyonu filmi">
-    <source src="{{ 'bypkwear-campaign-film-v1.mp4' | asset_url }}" type="video/mp4">
+  <video class="bypk-film__video" autoplay muted loop playsinline controls controlslist="nodownload noremoteplayback" preload="auto" poster="{{ 'bypkwear-hero-v1.png' | asset_url }}" aria-label="PKWEAR etek ve eşofman koleksiyonu filmi">
+    <source src="{{ 'pkwear-campaign-film-web.mp4' | asset_url }}" type="video/mp4">
   </video>
   <div class="bypk-film__shade"></div>
   <div class="bypk-film__content">
@@ -9,10 +9,6 @@
     <p>{{ section.settings.text }}</p>
     <a class="bypk-button" href="{{ section.settings.link }}">{{ section.settings.link_label }}</a>
   </div>
-  <button class="bypk-film__control" type="button" aria-label="Videoyu duraklat" aria-pressed="false">
-    <span class="bypk-film__pause" aria-hidden="true">Ⅱ</span>
-    <span class="bypk-film__play" aria-hidden="true">▶</span>
-  </button>
 </section>
 
 {% stylesheet %}
@@ -25,53 +21,32 @@
   .bypk-film__content > p:not(.bypk-kicker) { max-width: 48ch; margin: 1.5rem 0 2rem; font-size: clamp(.95rem, 1.3vw, 1.12rem); line-height: 1.65; }
   .bypk-film .bypk-button { color: #fff; }
   .bypk-film .bypk-button:hover { color: #111; background: #fff; }
-  .bypk-film__control { position: absolute; right: clamp(1.25rem, 3vw, 3rem); bottom: clamp(1.25rem, 3vw, 3rem); z-index: 2; display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; color: #fff; background: rgba(0,0,0,.18); cursor: pointer; backdrop-filter: blur(8px); }
-  .bypk-film__play { display: none; font-size: .72rem; }
-  .bypk-film__control[aria-pressed='true'] .bypk-film__pause { display: none; }
-  .bypk-film__control[aria-pressed='true'] .bypk-film__play { display: inline; }
   @media (max-width: 749px) {
-    .bypk-film { min-height: 72svh; }
+    .bypk-film { min-height: 64svh; }
     .bypk-film__video { object-position: 58% center; }
-    .bypk-film__content { justify-content: flex-end; padding: 2rem 1.25rem 3.5rem; }
+    .bypk-film__shade { background: linear-gradient(0deg, rgba(0,0,0,.72), rgba(0,0,0,.05) 72%); pointer-events: none; }
+    .bypk-film__content { justify-content: flex-end; padding: 2rem 1.15rem 4.75rem; pointer-events: none; }
+    .bypk-film__content h2 { max-width: 9ch; font-size: clamp(2.6rem, 12vw, 4rem); }
+    .bypk-film__content > p:not(.bypk-kicker) { margin: 1rem 0 1.4rem; font-size: .92rem; line-height: 1.5; }
+    .bypk-film__content .bypk-button { align-self: flex-start; pointer-events: auto; }
   }
 {% endstylesheet %}
 
 {% javascript %}
   const setupCampaignFilm = (root) => {
     const video = root.querySelector('.bypk-film__video');
-    const control = root.querySelector('.bypk-film__control');
-    if (!video || !control || control.dataset.ready === 'true') return;
-    control.dataset.ready = 'true';
-
-    const syncControl = () => {
-      const paused = video.paused;
-      control.setAttribute('aria-pressed', String(paused));
-      control.setAttribute('aria-label', paused ? 'Videoyu oynat' : 'Videoyu duraklat');
-    };
+    if (!video || video.dataset.ready === 'true') return;
+    video.dataset.ready = 'true';
 
     const tryPlay = () => {
       video.muted = true;
       video.playsInline = true;
-      return video.play().then(syncControl).catch(syncControl);
+      return video.play().catch(() => undefined);
     };
-    control.addEventListener('click', () => {
-      if (video.paused) {
-        if (video.ended || video.currentTime >= video.duration - 0.1) video.currentTime = 0;
-        tryPlay();
-      }
-      else {
-        video.pause();
-        syncControl();
-      }
-    });
-
-    video.addEventListener('play', syncControl);
-    video.addEventListener('pause', syncControl);
     video.addEventListener('canplay', () => {
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && video.paused) tryPlay();
     }, { once: true });
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) tryPlay();
-    else syncControl();
   };
 
   document.querySelectorAll('.bypk-film').forEach(setupCampaignFilm);
