@@ -83,6 +83,17 @@ body {
   object-position: 58% center !important;
 }
 
+.bypk-campaign:has(.bypk-campaign__media.pkw-campaign-media-bg) .bypk-campaign__media {
+  background-image: var(--pkw-campaign-image) !important;
+  background-repeat: no-repeat !important;
+  background-position: 58% center !important;
+  background-size: cover !important;
+}
+
+.bypk-campaign:has(.bypk-campaign__media.pkw-campaign-media-bg) .bypk-campaign__image {
+  display: none !important;
+}
+
 .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__shade {
   display: none !important;
 }
