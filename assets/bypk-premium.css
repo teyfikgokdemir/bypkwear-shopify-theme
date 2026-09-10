@@ -56,6 +56,25 @@ body {
 .pkw-floating-action--top.is-visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .pkw-floating-action--top[hidden] { display: none; }
 
+.bypk-campaign:has(.bypk-campaign__media) {
+  grid-template-columns: 1fr !important;
+  min-height: 0 !important;
+  padding: clamp(3rem, 7vw, 7rem) clamp(1rem, 5vw, 5.5rem) !important;
+  background: #11100e !important;
+}
+
+.bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__media,
+.bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__shade {
+  display: none !important;
+}
+
+.bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__content {
+  grid-column: 1 !important;
+  min-height: 0 !important;
+  max-width: 720px !important;
+  padding: 0 !important;
+}
+
 @media (max-width: 749px) {
   .header-section,
   .header-section:has(> #header-component[sticky]) { z-index: 100 !important; }
