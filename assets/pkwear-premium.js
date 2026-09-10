@@ -44,6 +44,17 @@
     });
   };
 
+  const stabilizeCampaignMedia = (root = document) => {
+    root.querySelectorAll('.bypk-campaign__media').forEach((media) => {
+      if (media.classList.contains('pkw-campaign-media-bg')) return;
+      const image = media.querySelector('img');
+      const source = image?.currentSrc || image?.src;
+      if (!source) return;
+      media.style.setProperty('--pkw-campaign-image', `url("${source}")`);
+      media.classList.add('pkw-campaign-media-bg');
+    });
+  };
+
   const updateScroll = (isMoving = false) => {
     const container = getScrollContainer();
     const scrollTop = getScrollTop();
@@ -93,11 +104,15 @@
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
 
   reveal();
+  stabilizeCampaignMedia();
   bindScroll();
   updateScroll();
   squeezeQuery.addEventListener('change', () => {
     bindScroll();
     updateScroll();
   });
-  document.addEventListener('shopify:section:load', (event) => reveal(event.target));
+  document.addEventListener('shopify:section:load', (event) => {
+    reveal(event.target);
+    stabilizeCampaignMedia(event.target);
+  });
 })();
