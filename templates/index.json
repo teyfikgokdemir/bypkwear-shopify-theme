@@ -35,18 +35,6 @@
         "products_to_show": 8
       }
     },
-    "campaign_film": {
-      "type": "bypk-campaign-film",
-      "settings": {
-        "kicker": "PKWEAR · ŞEHİR STİLİ",
-        "heading": "Hareket özgürlükle buluştu.",
-        "text": "Günün her anına uyum sağlayan etekler ve eşofman takımlarıyla kendi ritmini yakala.",
-        "skirt_label": "Etekleri Keşfet",
-        "skirt_link": "shopify://collections/etek",
-        "tracksuit_label": "Eşofmanları Keşfet",
-        "tracksuit_link": "shopify://collections/esofmanlar"
-      }
-    },
     "brand_story": {
       "type": "bypk-brand-story",
       "settings": {
@@ -58,5 +46,11 @@
       }
     }
   },
-  "order": ["bypk_hero", "trust", "skirts", "campaign_film", "tracksuits", "brand_story"]
+  "order": [
+    "bypk_hero",
+    "trust",
+    "skirts",
+    "tracksuits",
+    "brand_story"
+  ]
 }
