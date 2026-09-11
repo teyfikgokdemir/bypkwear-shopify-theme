@@ -1,18 +1,8 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "bypk_hero": {
       "type": "bypk-editorial-hero",
       "settings": {
-        "image": "shopify://shop_images/bypkwear-hero-v1.png",
         "kicker": "PKWEAR · YENİ SEZON",
         "heading": "Şehrin ritmine göre tasarlandı.",
         "primary_label": "Yeni Gelenleri Keşfet",
@@ -35,16 +25,6 @@
         "products_to_show": 8
       }
     },
-    "campaign_film": {
-      "type": "bypk-campaign-film",
-      "settings": {
-        "kicker": "PKWEAR · ŞEHİR STİLİ",
-        "heading": "Hareket özgürlükle buluştu.",
-        "text": "Günün her anına uyum sağlayan etekler ve eşofman takımlarıyla kendi ritmini yakala.",
-        "link_label": "Eşofmanları Keşfet",
-        "link": "shopify://collections/esofmanlar"
-      }
-    },
     "tracksuits": {
       "type": "bypk-collection-showcase",
       "settings": {
@@ -52,6 +32,18 @@
         "heading": "Eşofman Koleksiyonu",
         "collection": "esofmanlar",
         "products_to_show": 8
+      }
+    },
+    "campaign_film": {
+      "type": "bypk-campaign-film",
+      "settings": {
+        "kicker": "PKWEAR · ŞEHİR STİLİ",
+        "heading": "Hareket özgürlükle buluştu.",
+        "text": "Günün her anına uyum sağlayan etekler ve eşofman takımlarıyla kendi ritmini yakala.",
+        "skirt_label": "Etekleri Keşfet",
+        "skirt_link": "shopify://collections/etek",
+        "tracksuit_label": "Eşofmanları Keşfet",
+        "tracksuit_link": "shopify://collections/esofmanlar"
       }
     },
     "brand_story": {
@@ -65,12 +57,5 @@
       }
     }
   },
-  "order": [
-    "bypk_hero",
-    "trust",
-    "skirts",
-    "campaign_film",
-    "tracksuits",
-    "brand_story"
-  ]
+  "order": ["bypk_hero", "trust", "skirts", "campaign_film", "tracksuits", "brand_story"]
 }
