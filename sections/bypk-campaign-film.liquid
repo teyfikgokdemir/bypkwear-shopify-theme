@@ -3,53 +3,35 @@
     <p class="bypk-kicker">{{ section.settings.kicker }}</p>
     <h2 id="bypk-campaign-title-{{ section.id }}">{{ section.settings.heading }}</h2>
     <p>{{ section.settings.text }}</p>
-    {% if section.settings.link != blank and section.settings.link_label != blank %}
-      <a class="bypk-button" href="{{ section.settings.link }}">{{ section.settings.link_label }}</a>
-    {% endif %}
-  </div>
-
-  <div class="bypk-campaign__gallery" aria-label="PKWEAR koleksiyon görselleri">
-    <a class="bypk-campaign__tile bypk-campaign__tile--skirt" href="{{ section.settings.skirt_link }}">
-      {% if section.settings.skirt_image != blank %}
-        {{ section.settings.skirt_image | image_url: width: 1200 | image_tag: class: 'bypk-campaign__image', loading: 'lazy', sizes: '(max-width: 749px) 84vw, 28vw', widths: '500, 750, 1000, 1200' }}
-      {% else %}
-        <img class="bypk-campaign__image" src="{{ 'bypkwear-etek-campaign-v1.png' | asset_url }}" alt="PKWEAR etek koleksiyonu" width="1122" height="1402" loading="lazy">
+    <div class="bypk-campaign__actions">
+      {% if section.settings.skirt_link != blank %}
+        <a class="bypk-button" href="{{ section.settings.skirt_link }}">{{ section.settings.skirt_label }}</a>
       {% endif %}
-      <span>Etek</span>
-    </a>
-    <a class="bypk-campaign__tile bypk-campaign__tile--tracksuit" href="{{ section.settings.tracksuit_link }}">
-      {% if section.settings.tracksuit_image != blank %}
-        {{ section.settings.tracksuit_image | image_url: width: 1200 | image_tag: class: 'bypk-campaign__image', loading: 'lazy', sizes: '(max-width: 749px) 84vw, 28vw', widths: '500, 750, 1000, 1200' }}
-      {% else %}
-        <img class="bypk-campaign__image" src="{{ 'bypkwear-esofman-campaign-v1.png' | asset_url }}" alt="PKWEAR eşofman koleksiyonu" width="1122" height="1402" loading="lazy">
+      {% if section.settings.tracksuit_link != blank %}
+        <a class="bypk-button bypk-button--ghost" href="{{ section.settings.tracksuit_link }}">{{ section.settings.tracksuit_label }}</a>
       {% endif %}
-      <span>Eşofman</span>
-    </a>
+    </div>
   </div>
 </section>
 
 {% stylesheet %}
-  .bypk-campaign { display: grid; grid-template-columns: minmax(320px, .82fr) 1.18fr; gap: clamp(1rem, 4vw, 4.5rem); align-items: center; padding: clamp(3rem, 7vw, 7rem) clamp(1rem, 5vw, 5.5rem); overflow: hidden; color: #fff; background: #11100e; }
-  .bypk-campaign__content { display: flex; max-width: 620px; flex-direction: column; align-items: flex-start; }
-  .bypk-campaign__content h2 { max-width: 10ch; margin: 0; font-size: clamp(3rem, 6.4vw, 6.4rem); font-weight: 450; letter-spacing: -.055em; line-height: .92; }
-  .bypk-campaign__content > p:not(.bypk-kicker) { max-width: 44ch; margin: 1.35rem 0 2rem; font-size: clamp(.95rem, 1.2vw, 1.08rem); line-height: 1.65; }
-  .bypk-campaign__gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.75rem, 1.4vw, 1.25rem); align-items: stretch; }
-  .bypk-campaign__tile { position: relative; display: block; min-height: clamp(420px, 45vw, 660px); overflow: hidden; color: #fff; background: #26221d; }
-  .bypk-campaign__tile--tracksuit { transform: translateY(3.5rem); }
-  .bypk-campaign__image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .9s cubic-bezier(.22, 1, .36, 1); }
-  .bypk-campaign__tile::after { content: ""; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,0)); pointer-events: none; }
-  .bypk-campaign__tile span { position: absolute; left: 1rem; bottom: 1rem; z-index: 1; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-  .bypk-campaign__tile:hover .bypk-campaign__image { transform: scale(1.035); }
+  .bypk-campaign { position: relative; display: block; overflow: hidden; padding: clamp(3.5rem, 8vw, 8rem) clamp(1.15rem, 6vw, 6rem); color: #fff; background: radial-gradient(circle at 86% 18%, rgba(244,240,232,.18), transparent 28rem), linear-gradient(135deg, #11100e 0%, #11100e 54%, #1e1a16 54%, #2a241f 100%); }
+  .bypk-campaign::after { content: ""; position: absolute; inset: auto clamp(1rem, 5vw, 5rem) clamp(1rem, 4vw, 3rem) auto; width: clamp(120px, 18vw, 260px); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; opacity: .7; pointer-events: none; }
+  .bypk-campaign__content { position: relative; z-index: 1; display: flex; max-width: 780px; flex-direction: column; align-items: flex-start; }
+  .bypk-campaign__content h2 { max-width: 11ch; margin: 0; font-size: clamp(3.4rem, 8vw, 8rem); font-weight: 440; letter-spacing: -.06em; line-height: .9; }
+  .bypk-campaign__content > p:not(.bypk-kicker) { max-width: 48ch; margin: 1.45rem 0 2.1rem; color: rgba(255,255,255,.86); font-size: clamp(1rem, 1.35vw, 1.2rem); line-height: 1.65; }
+  .bypk-campaign__actions { display: flex; flex-wrap: wrap; gap: .75rem; }
   .bypk-campaign .bypk-button { color: #fff; }
   .bypk-campaign .bypk-button:hover { color: #111; background: #fff; }
+  .bypk-campaign .bypk-button--ghost { color: #111; background: #fff; }
+  .bypk-campaign .bypk-button--ghost:hover { color: #fff; background: transparent; }
   @media (max-width: 749px) {
-    .bypk-campaign { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1rem 3rem; }
-    .bypk-campaign__content h2 { max-width: 9ch; font-size: clamp(2.55rem, 13vw, 4rem); }
-    .bypk-campaign__content > p:not(.bypk-kicker) { margin: 1rem 0 1.4rem; font-size: .92rem; line-height: 1.5; }
-    .bypk-campaign__gallery { grid-template-columns: 76vw 76vw; gap: .8rem; margin-inline: -1rem; padding-inline: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-    .bypk-campaign__gallery::-webkit-scrollbar { display: none; }
-    .bypk-campaign__tile { min-height: 440px; scroll-snap-align: start; }
-    .bypk-campaign__tile--tracksuit { transform: none; }
+    .bypk-campaign { padding: 3rem 1rem; background: linear-gradient(155deg, #11100e 0%, #11100e 64%, #2a241f 64%, #2a241f 100%); }
+    .bypk-campaign::after { width: 126px; opacity: .45; }
+    .bypk-campaign__content h2 { max-width: 9ch; font-size: clamp(3rem, 17vw, 4.8rem); }
+    .bypk-campaign__content > p:not(.bypk-kicker) { margin: 1rem 0 1.45rem; font-size: .96rem; line-height: 1.55; }
+    .bypk-campaign__actions { width: 100%; flex-direction: column; }
+    .bypk-campaign__actions .bypk-button { justify-content: center; width: 100%; }
   }
 {% endstylesheet %}
 
@@ -57,14 +39,12 @@
 {
   "name": "PKWEAR Kampanya Bannerı",
   "settings": [
-    { "type": "image_picker", "id": "skirt_image", "label": "Etek görseli" },
-    { "type": "image_picker", "id": "tracksuit_image", "label": "Eşofman görseli" },
     { "type": "text", "id": "kicker", "label": "Üst başlık", "default": "PKWEAR · ŞEHİR STİLİ" },
     { "type": "inline_richtext", "id": "heading", "label": "Başlık", "default": "Hareket özgürlükle buluştu." },
     { "type": "textarea", "id": "text", "label": "Metin", "default": "Günün her anına uyum sağlayan etekler ve eşofman takımlarıyla kendi ritmini yakala." },
-    { "type": "text", "id": "link_label", "label": "Buton", "default": "Koleksiyonu Keşfet" },
-    { "type": "url", "id": "link", "label": "Buton bağlantısı" },
+    { "type": "text", "id": "skirt_label", "label": "Etek butonu", "default": "Etekleri Keşfet" },
     { "type": "url", "id": "skirt_link", "label": "Etek bağlantısı", "default": "shopify://collections/etek" },
+    { "type": "text", "id": "tracksuit_label", "label": "Eşofman butonu", "default": "Eşofmanları Keşfet" },
     { "type": "url", "id": "tracksuit_link", "label": "Eşofman bağlantısı", "default": "shopify://collections/esofmanlar" }
   ],
   "presets": [{ "name": "PKWEAR Kampanya Bannerı" }]
