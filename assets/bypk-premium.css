@@ -62,6 +62,11 @@ body {
   display: none !important;
 }
 
+.bypk-campaign,
+.bypk-film {
+  display: none !important;
+}
+
 .bypk-campaign__media,
 .bypk-campaign__shade,
 .bypk-campaign__gallery,
