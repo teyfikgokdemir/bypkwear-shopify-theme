@@ -56,6 +56,12 @@ body {
 .pkw-floating-action--top.is-visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .pkw-floating-action--top[hidden] { display: none; }
 
+.bypk-hero__media,
+.bypk-hero__shade,
+.bypk-hero__scroll {
+  display: none !important;
+}
+
 .bypk-campaign__media,
 .bypk-campaign__shade,
 .bypk-campaign__gallery,
