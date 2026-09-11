@@ -1,4 +1,15 @@
 <section class="bypk-hero" style="--bypk-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
+  <div class="bypk-hero__visual" aria-hidden="true">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0823/7144/4990/files/pkwear-hero-main-v1.png?v=1789088580"
+      width="1672"
+      height="941"
+      loading="eager"
+      fetchpriority="high"
+      class="bypk-hero__visual-image"
+      alt=""
+    >
+  </div>
   <div class="bypk-hero__content">
     {% if section.settings.kicker != blank %}<p class="bypk-kicker bypk-reveal">{{ section.settings.kicker }}</p>{% endif %}
     <h1 class="bypk-title bypk-reveal">{{ section.settings.heading }}</h1>
@@ -11,16 +22,21 @@
 </section>
 
 {% stylesheet %}
-  .bypk-hero { position: relative; min-height: min(84svh, 900px); overflow: hidden; color: #fff; background: radial-gradient(circle at 78% 16%, rgba(244,240,232,.22), transparent 23rem), linear-gradient(135deg, #11100e 0%, #11100e 58%, #211d18 58%, #332b24 100%); }
-  .bypk-hero::before { content: ""; position: absolute; right: clamp(1rem, 6vw, 7rem); top: clamp(4rem, 10vw, 8rem); width: clamp(150px, 24vw, 360px); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; pointer-events: none; }
-  .bypk-hero::after { content: ""; position: absolute; right: 0; bottom: 0; width: min(46vw, 680px); height: 46%; background: linear-gradient(135deg, transparent 0%, rgba(244,240,232,.1) 100%); clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%); pointer-events: none; }
+  .bypk-hero { position: relative; min-height: min(86svh, 920px); overflow: hidden; color: #fff; background: #11100e; }
+  .bypk-hero__visual { position: absolute; inset: 0; }
+  .bypk-hero__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.42) 42%, rgba(0,0,0,.12) 100%); }
+  .bypk-hero__visual-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .bypk-hero::before { content: ""; position: absolute; right: clamp(1rem, 6vw, 7rem); top: clamp(4rem, 10vw, 8rem); z-index: 1; width: clamp(150px, 24vw, 360px); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; pointer-events: none; }
+  .bypk-hero::after { content: ""; position: absolute; right: 0; bottom: 0; z-index: 1; width: min(46vw, 680px); height: 46%; background: linear-gradient(135deg, transparent 0%, rgba(244,240,232,.1) 100%); clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%); pointer-events: none; }
   .bypk-hero__content { position: relative; z-index: 1; display: flex; min-height: inherit; max-width: 980px; flex-direction: column; justify-content: flex-end; padding: clamp(2.4rem, 6vw, 6rem); padding-bottom: clamp(4rem, 8vw, 8rem); }
   .bypk-hero__lead { max-width: 48ch; margin: 1.25rem 0 0; color: rgba(255,255,255,.86); font-size: clamp(1rem, 1.45vw, 1.26rem); line-height: 1.65; }
   .bypk-hero__actions { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.2rem; }
   .bypk-button--light:hover { color: #111; background: #fff; }
   .bypk-hero__text-link { color: inherit; font-size: .78rem; font-weight: 650; letter-spacing: .1em; text-underline-offset: 5px; }
   @media (max-width: 749px) {
-    .bypk-hero { min-height: 76svh; background: linear-gradient(155deg, #11100e 0%, #11100e 66%, #2a241f 66%, #2a241f 100%); }
+    .bypk-hero { min-height: 76svh; }
+    .bypk-hero__visual::after { background: linear-gradient(0deg, rgba(0,0,0,.74) 0%, rgba(0,0,0,.42) 56%, rgba(0,0,0,.18) 100%); }
+    .bypk-hero__visual-image { object-position: 56% center; }
     .bypk-hero::before { right: -42px; top: 82px; width: 170px; opacity: .6; }
     .bypk-hero::after { width: 78vw; height: 28%; opacity: .7; }
     .bypk-hero__content { justify-content: flex-end; padding: 2rem 1.15rem 3rem; }
