@@ -56,75 +56,16 @@ body {
 .pkw-floating-action--top.is-visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 .pkw-floating-action--top[hidden] { display: none; }
 
-.bypk-campaign:has(.bypk-campaign__media) {
-  display: grid !important;
-  grid-template-columns: minmax(340px, 42%) minmax(0, 1fr) !important;
-  min-height: clamp(520px, 48vw, 720px) !important;
-  padding: 0 !important;
-  background: #11100e !important;
-}
-
-.bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__media {
-  position: relative !important;
-  display: block !important;
-  grid-column: 2 !important;
-  grid-row: 1 !important;
-  min-height: inherit !important;
-  overflow: hidden !important;
-}
-
-.bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__image {
-  position: absolute !important;
-  inset: 0 !important;
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: 58% center !important;
-}
-
-.bypk-campaign:has(.bypk-campaign__media.pkw-campaign-media-bg) .bypk-campaign__media {
-  background-image: var(--pkw-campaign-image) !important;
-  background-repeat: no-repeat !important;
-  background-position: 58% center !important;
-  background-size: cover !important;
-}
-
-.bypk-campaign:has(.bypk-campaign__media.pkw-campaign-media-bg) .bypk-campaign__image {
-  display: none !important;
-}
-
-.bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__shade {
+.bypk-campaign__media,
+.bypk-campaign__shade,
+.bypk-campaign__gallery,
+.bypk-campaign__tile,
+.bypk-campaign__image {
   display: none !important;
 }
 
 .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__content {
-  grid-column: 1 !important;
-  grid-row: 1 !important;
-  min-height: inherit !important;
-  max-width: 680px !important;
-  padding: clamp(2rem, 5vw, 5.5rem) !important;
-}
-
-@media (max-width: 749px) {
-  .bypk-campaign:has(.bypk-campaign__media) {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: minmax(320px, 54svh) auto !important;
-    min-height: 0 !important;
-  }
-
-  .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__media {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    min-height: 0 !important;
-  }
-
-  .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__content {
-    grid-column: 1 !important;
-    grid-row: 2 !important;
-    min-height: 0 !important;
-    padding: 2.25rem 1.15rem 2.5rem !important;
-  }
+  max-width: 780px !important;
 }
 
 @media (max-width: 749px) {
