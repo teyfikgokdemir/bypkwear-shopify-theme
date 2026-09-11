@@ -187,6 +187,87 @@
       </button>
     </div>
 
+
+    <style id="pkw-campaign-render-hotfix">
+      .bypk-campaign:has(.bypk-campaign__media) {
+        display: grid !important;
+        grid-template-columns: minmax(340px, 42%) minmax(0, 1fr) !important;
+        min-height: clamp(520px, 48vw, 720px) !important;
+        padding: 0 !important;
+        background: #11100e !important;
+        overflow: hidden !important;
+      }
+
+      .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__media {
+        position: relative !important;
+        display: block !important;
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        min-height: inherit !important;
+        overflow: hidden !important;
+        background-image: var(--pkw-campaign-image) !important;
+        background-repeat: no-repeat !important;
+        background-position: 58% center !important;
+        background-size: cover !important;
+      }
+
+      .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__media img,
+      .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__image {
+        display: none !important;
+      }
+
+      .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__shade {
+        display: none !important;
+      }
+
+      .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__content {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        min-height: inherit !important;
+        max-width: 680px !important;
+        padding: clamp(2rem, 5vw, 5.5rem) !important;
+      }
+
+      @media (max-width: 749px) {
+        .bypk-campaign:has(.bypk-campaign__media) {
+          grid-template-columns: 1fr !important;
+          grid-template-rows: minmax(320px, 54svh) auto !important;
+          min-height: 0 !important;
+        }
+
+        .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__media {
+          grid-column: 1 !important;
+          grid-row: 1 !important;
+          min-height: 0 !important;
+        }
+
+        .bypk-campaign:has(.bypk-campaign__media) .bypk-campaign__content {
+          grid-column: 1 !important;
+          grid-row: 2 !important;
+          min-height: 0 !important;
+          padding: 2.25rem 1.15rem 2.5rem !important;
+        }
+      }
+    </style>
+    <script>
+      (function () {
+        function stabilizeCampaignMedia(root) {
+          (root || document).querySelectorAll('.bypk-campaign__media').forEach(function (media) {
+            var image = media.querySelector('img');
+            var source = image && (image.currentSrc || image.src);
+            if (!source) return;
+            media.style.setProperty('--pkw-campaign-image', 'url("' + source + '")');
+            media.classList.add('pkw-campaign-media-bg');
+          });
+        }
+
+        stabilizeCampaignMedia(document);
+        document.addEventListener('shopify:section:load', function (event) {
+          stabilizeCampaignMedia(event.target);
+        });
+      })();
+    </script>
+
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
